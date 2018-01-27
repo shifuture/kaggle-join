@@ -9,10 +9,10 @@ def loadTestData():
     with open('./data/test.csv') as file:
         lines=csv.reader(file)
         for line in lines:
-            l.append(list(int(e) if e=='0' else 1 for e in line))
+            l.append(list(e if e=='0' else 1 for e in line))
     #remove csv head
     l.remove(l[0])
-    data=np.array(l)
+    data=np.array(l, int)
     data=data.reshape(28000,784)
     return data
 
