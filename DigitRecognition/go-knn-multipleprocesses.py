@@ -85,4 +85,6 @@ tests = loadTestData()
 res = go(trains, tests, labels, 3000)
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
-    writer.writerow(res)
+    writer.writerow("ImageId,Label")
+    for i in len(res)
+        writer.writerow("%d,%d"%(i,res[i]))
