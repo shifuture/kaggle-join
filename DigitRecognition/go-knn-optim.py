@@ -33,7 +33,7 @@ def loadTestData():
     data=np.array(l, int)
     data=data.reshape(28000,784)
     for i in range(len(data)):
-        data[i] = reintegrate(data)
+        data[i] = reintegrate(data[i])
     return data
 
 def reintegrate(data):
