@@ -79,6 +79,6 @@ tests = loadTestData()
 res = knn(trains, tests, labels, 3000)
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
-    writer.writerow("ImageId,Label")
-    for i in range(len(res)):
-        writer.writerow("%d,%d"%(i,res[i]))
+    writer.writerow(["ImageId","Label"])
+    for r in res:
+        writer.writerow(r)

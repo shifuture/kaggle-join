@@ -42,8 +42,8 @@ def reintegrate(data):
     toFilNum = len(data) - len(res)
     res = np.concatenate((res, np.zeros((toFilNum,28))))
     res = res[:,~np.all(res==0,axis=0)]
-    toFilNum = data.shape()[1] - res.shape()[1]
-    res = np.concatenate((res, np.zeros((28,toFilNum))))
+    toFilNum = data.shape[1] - res.shape[1]
+    res = np.concatenate((res, np.zeros((28,toFilNum))), axis=1)
     return  np.array(list(res.flat))
 
 def distance(vx, vy):
@@ -99,6 +99,6 @@ tests = loadTestData()
 res = go(trains, tests, labels, 3000)
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
-    writer.writerow("ImageId,Label")
-    for i in range(len(res)):
-        writer.writerow("%d,%d"%(i,res[i]))
+    writer.writerow(["ImageId","Label"])
+    for r in res:
+        writer.writerow(r)
