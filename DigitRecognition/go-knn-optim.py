@@ -90,7 +90,7 @@ def knn_entry(args):
 
 def go(trains, tests, labels, k):
     pool = mp.Pool()
-    res=pool.map(knn_entry, [(i, trains, tests[i], labels, k) for i in range(len(tests))] )
+    res=pool.map(knn_entry, [(i+1, trains, tests[i], labels, k) for i in range(len(tests))] )
     pool.close()
     return res
 
