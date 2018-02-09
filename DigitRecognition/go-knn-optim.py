@@ -19,7 +19,7 @@ def loadTrainData():
     label=data[:,0]
     data=data[:,1:]
     for i in range(len(data)):
-        data[i] = reintegrate(data)
+        data[i] = reintegrate(data[i])
     return label,data
 
 def loadTestData():
