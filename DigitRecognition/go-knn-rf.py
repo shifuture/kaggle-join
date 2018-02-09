@@ -31,7 +31,7 @@ def possible(i, kl, t):
     print(i, ko)
     l,c = -1,0
     for key in ko.keys():
-        if ko[key] > c && ko[key] > len(kl)/2:
+        if ko[key] > c and ko[key] > len(kl)/3:
             l,c = key,ko[key]
     if l == -1:
         l=np.round(rfr.predict([t]))[0]
@@ -50,7 +50,7 @@ def knn(trains, test, index, n):
             for i in range(n):
                 if kl[i][0] > tmpDis:
                     toRemove,tmpDis = i, kl[i][0]
-            if toRemove != -1
+            if toRemove != -1:
                 kl[toRemove] = [dis, train[0]]
     return (index, possible(index, kl, test))
 
@@ -60,15 +60,17 @@ def knn_entry(args):
 def go(trains, tests, n):
     pool = mp.Pool()
     res=pool.map(knn_entry, [(trains, tests[i], i, n) for i in range(len(tests))] )
+    pool.close()
     return res
 
 trains = loadTrainData()
 tests = loadTestData()
 rfr = RandomForestRegressor(random_state=0, n_estimators=2000, n_jobs=-1)
 rfr.fit(trains.iloc[:,1:], trains.iloc[:,0])
+print(tests, trains)
 res = go(trains, tests, 3000)
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
     writer.writerow("ImageId,Label")
-    for i in len(res)
+    for i in len(res):
         writer.writerow("%d,%d"%(i,res[i]))
