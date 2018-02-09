@@ -18,7 +18,7 @@ def loadTrainData():
     data=data.reshape(42000,785)
     label=data[:,0]
     data=data[:,1:]
-    for i in len(data):
+    for i in range(len(data)):
         data[i] = reintegrate(data)
     return label,data
 
@@ -32,7 +32,7 @@ def loadTestData():
     l.remove(l[0])
     data=np.array(l, int)
     data=data.reshape(28000,784)
-    for i in len(data):
+    for i in range(len(data)):
         data[i] = reintegrate(data)
     return data
 
@@ -97,5 +97,5 @@ res = go(trains, tests, labels, 3000)
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
     writer.writerow("ImageId,Label")
-    for i in len(res):
+    for i in range(len(res)):
         writer.writerow("%d,%d"%(i,res[i]))

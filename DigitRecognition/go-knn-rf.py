@@ -72,5 +72,5 @@ res = go(trains, tests, 3000)
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
     writer.writerow("ImageId,Label")
-    for i in len(res):
+    for i in range(len(res)):
         writer.writerow("%d,%d"%(i,res[i]))
