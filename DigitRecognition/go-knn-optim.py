@@ -41,6 +41,9 @@ def reintegrate(data):
     res = data[~np.all(data==0,axis=1)]
     toFilNum = len(data) - len(res)
     res = np.concatenate((res, np.zeros((toFilNum,28))))
+    res = res[:,~np.all(res==0,axis=0)]
+    toFilNum = data.shape()[1] - res.shape()[1]
+    res = np.concatenate((res, np.zeros((28,toFilNum))))
     return  np.array(list(res.flat))
 
 def distance(vx, vy):
