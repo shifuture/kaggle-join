@@ -96,7 +96,9 @@ def go(trains, tests, labels, k):
 
 labels, trains = loadTrainData()
 tests = loadTestData()
-res = go(trains, tests, labels, 3000)
+res = go(trains, tests, labels, 1000)
+res = pd.DataFrame(res)
+res = res.sort_values(by=[0]).as_matrix()
 with open('result.csv', 'wb') as file:
     writer=csv.writer(file)
     writer.writerow(["ImageId","Label"])
