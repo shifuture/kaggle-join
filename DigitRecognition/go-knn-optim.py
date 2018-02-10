@@ -5,6 +5,7 @@ import csv
 import numpy as np
 import collections
 import multiprocessing as mp
+import pandas as pd
 
 def loadTrainData():
     l=[]
